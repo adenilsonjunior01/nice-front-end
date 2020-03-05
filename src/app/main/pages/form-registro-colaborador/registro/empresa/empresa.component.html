@@ -1,0 +1,45 @@
+
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Ficha de Registro de Empresas">
+      <h5>Dados da Empresa</h5>
+      <hr>
+      <form [formGroup]="formEmpresa">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="dsempresa">Nome</label>
+              <input type="text" class="form-control" formControlName="ds_empresa" id="dsempresa" placeholder="Ex: Nice Contabilidade">
+            </div>
+          </div><!-- col-md-12-->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="dsempresa">Razão Social</label>
+              <input type="text" class="form-control" formControlName="razao_social" id="dsempresa" placeholder="Ex: Exemplo Indústrias">
+            </div>
+          </div><!-- col-md-4-->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="dsempresa">Nome Fantasia</label>
+              <input type="text" class="form-control" formControlName="nome_fantasia" id="dsempresa" placeholder="Ex: Empresa">
+            </div>
+          </div><!-- col-md-4-->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="dsempresa">CNPJ</label>
+              <input type="number" class="form-control" formControlName="cnpj" id="dsempresa" placeholder="Ex: 53991719000106">
+            </div>
+          </div><!-- col-md-4-->
+        </div><!-- /row -->
+        <app-endereco></app-endereco>
+        <hr>
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary mr-2">Limpar</button>
+            <button type="button" class="btn btn-primary" (click)="submitFormulario()" >Enviar</button>
+          </div>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>

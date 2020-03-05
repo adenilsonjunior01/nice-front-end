@@ -1,0 +1,267 @@
+
+<div class="row">
+  <div class="col-sm-12">
+    <h5>Documentos Pessoais</h5>
+    <form [formGroup]="formDocumentosPessoais">
+      <ngb-accordion [closeOthers]="true" activeIds="static-1" class="gradientaccordion">
+        <ngb-panel id="static-1">
+          <ng-template ngbPanelTitle>
+            <h5><a href="javascript:">#1 Carteira de Trabalho</a></h5>
+          </ng-template>
+          <ng-template ngbPanelContent >
+            <div class="row" formGroupName="carteira_trabalho">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nu_carteira">Número *</label>
+                  <input type="number" class="form-control" formControlName="numero" id="nu_carteira" autofocus>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="serie_carteira">Série *</label>
+                  <input type="number" class="form-control" formControlName="serie" id="serie_carteira">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="estado_carteira">Estado Emissor *</label>
+                  <input type="text" class="form-control" formControlName="estado_emissor" id="estado_carteira">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="data_carteira">Data de Emissão *</label>
+                  <input type="text" class="form-control" id="data_carteira"  bsDatepicker [bsConfig]="bsConfig"
+                   formControlName="data_emissao" placeholder="DD/MM/YYYY">
+                </div>
+              </div>
+            </div><!-- /row-->
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-2">
+          <ng-template ngbPanelTitle>
+            <h5><a href="javascript:">#2 Identidade</a></h5>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="row" formGroupName="identidade">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nu_identidade">Número *</label>
+                  <input type="number" class="form-control" formControlName="numero" id="nu_identidade">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="orgao_identidade">Série *</label>
+                  <input type="number" class="form-control" formControlName="serie" id="orgao_identidade">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="estado_identidade">Estado Emissor *</label>
+                  <input type="text" class="form-control" formControlName="estado_emissor" id="estado_identidade">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="data_identidade">Data de Emissão *</label>
+                  <input type="text" class="form-control" id="data_identidade"  bsDatepicker [bsConfig]="bsConfig"
+                   formControlName="data_emissao" placeholder="DD/MM/YYYY">
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-3">
+          <ng-template ngbPanelTitle>
+            <h5><a href="javascript:">#3 Titulo de Eleitor</a></h5>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="row"  formGroupName="titulo_eleitor">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nu_titulo">Número *</label>
+                  <input type="number" class="form-control" formControlName="numero" id="nu_titulo">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label for="zona">Zona *</label>
+                  <input type="number" class="form-control" formControlName="zona" id="zona">
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label for="secao">Seção *</label>
+                  <input type="number" class="form-control" formControlName="secao" id="secao">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="orgao_emissor">Estado Emissor *</label>
+                  <input type="text" class="form-control" formControlName="estado_emissor" id="orgao_emissor">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="data_titulo">Data de Emissão *</label>
+                  <input type="text" class="form-control" id="data_titulo"  bsDatepicker [bsConfig]="bsConfig"
+                   formControlName="data_emissao" placeholder="DD/MM/YYYY">
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-4">
+          <ng-template ngbPanelTitle>
+            <h5><a href="javascript:">#4 Dados do CPF</a></h5>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="row"  formGroupName="cpf">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="nu_cpf">Número *</label>
+                  <input type="number" class="form-control" formControlName="numero" id="nu_cpf">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Certidão de Regularidade do CPF *</label>
+                  <file-upload simple formControlName="certidao_regularidade">
+                    <ng-template let-file #placeholder>
+                      <ng-container *ngIf="file; else emptyList">
+                        {{ file.name }}
+                      </ng-container>
+                      <ng-template #emptyList>
+                        Selecione o arquivo...
+                      </ng-template>
+                    </ng-template>
+                  </file-upload>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-5">
+          <ng-template ngbPanelTitle>
+            <h5><a href="javascript:">#5 Certidão Reservista</a></h5>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="row"  formGroupName="certidao_reservista">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nu_reservista">Número *</label>
+                  <input type="number" class="form-control" formControlName="numero" id="nu_reservista">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="serie_reservista">Série *</label>
+                  <input type="number" class="form-control" formControlName="serie" id="serie_reservista">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="categoria_reservista">Categoria *</label>
+                  <input type="text" class="form-control" formControlName="categoria" id="categoria_reservista">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="data_reservista">Data de Emissão *</label>
+                  <input type="text" class="form-control" id="data_reservista"  bsDatepicker [bsConfig]="bsConfig"
+                   formControlName="data_emissao" placeholder="DD/MM/YYYY">
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel id="static-6">
+          <ng-template ngbPanelTitle>
+            <h5><a href="javascript:">#6 Dados do PIS</a></h5>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <div class="row"  formGroupName="pis">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nu_pis">Número *</label>
+                  <input type="number" class="form-control" formControlName="numero" id="nu_pis">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nm_banco">Banco *</label>
+                  <input type="text" class="form-control" formControlName="nm_banco" id="nm_banco">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nu_agencia">Agencia *</label>
+                  <input type="text" class="form-control" formControlName="nu_agencia" id="nu_agencia">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="nu_conta">Conta *</label>
+                  <input type="text" class="form-control" formControlName="nu_conta" id="nu_conta">
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </form>
+  </div><!-- /col-sm-12 -->
+  <div class="col-sm-12 mt-3">
+    <h5 class="text-center">Informações Complementares do Trabalhador</h5>
+    <hr>
+    <form [formGroup]="formDocumentosPessoais">
+      <div class="row" formGroupName="info_complementar">
+        <div class="col-md-6">
+          <label for="estrangeiro" class="d-block">Trabalhador em processo de Seguro Desemprego *</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="desempregos" formControlName="seguro_desemprego" class="custom-control-input" value="S">
+            <label class="custom-control-label d-flex align-items-center" for="desempregos">Sim</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="desempregon" formControlName="seguro_desemprego" class="custom-control-input" value="N">
+            <label class="custom-control-label d-flex align-items-center" for="desempregon">Não</label>
+          </div>
+        </div><!-- /col-md-6 -->
+        <div class="col-md-6">
+          <label for="estrangeiro" class="d-block">Múltiplos Vínculos Trabalhistas *</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="vinculoss" formControlName="vinculos_trabalhistas" class="custom-control-input" value="S">
+            <label class="custom-control-label d-flex align-items-center" for="vinculoss">Sim</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="vinculosn" formControlName="vinculos_trabalhistas" class="custom-control-input" value="N">
+            <label class="custom-control-label d-flex align-items-center" for="vinculosn">Não</label>
+          </div>
+        </div><!-- /col-md-6 -->
+        <div class="col-md-6">
+          <label for="estrangeiro" class="d-block">Houve Alteração no nome do Trabalhador *</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="alteracaonomes" formControlName="alteracao_nome" class="custom-control-input" value="S">
+            <label class="custom-control-label d-flex align-items-center" for="alteracaonomes">Sim</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="alteracaonomen" formControlName="alteracao_nome" class="custom-control-input" value="N">
+            <label class="custom-control-label d-flex align-items-center" for="alteracaonomen">Não</label>
+          </div>
+        </div><!-- /col-md-6 -->
+        <div class="col-md-6">
+          <label for="estrangeiro" class="d-block">Portador de Deficiência *</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="portadors" formControlName="portador_deficiencia" class="custom-control-input" value="S">
+            <label class="custom-control-label d-flex align-items-center" for="portadors">Sim</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="portadorn" formControlName="portador_deficiencia" class="custom-control-input" value="N">
+            <label class="custom-control-label d-flex align-items-center" for="portadorn">Não</label>
+          </div>
+        </div><!-- /col-md-6 -->
+      </div>
+    </form>
+  </div><!-- /col-sm-12 -->
+</div><!--/ row -->

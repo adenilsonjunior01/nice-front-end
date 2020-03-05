@@ -1,0 +1,142 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Cadastro de Usuário">
+      <h5>Dados Pessoais</h5>
+      <hr>
+      <form [formGroup]="formUser">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="perfil">Perfil *</label>
+              <ng-select
+                [items]="perfil"
+                bindValue="value"
+                bindLabel="name"
+                formControlName="idPerfil"
+                autofocus></ng-select>
+                <small class="invalid-input" *ngIf="!formUser.get('idPerfil').valid && formUser.get('idPerfil').touched">*Campo obrigatório</small>
+            </div>
+          </div><!-- /col-md-4 -->
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="perfil">Empresa *</label>
+              <ng-select
+                [items]="empresas"
+                bindValue="value"
+                formControlName="idEmpresa"
+                bindLabel="name"></ng-select>
+                <small class="invalid-input" *ngIf="!formUser.get('idEmpresa').valid && formUser.get('idEmpresa').touched">*Campo obrigatório</small>
+            </div>
+          </div><!-- /col-md-4 -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="nome">Nome Completo *</label>
+              <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Ex: João Paulo"
+              [ngClass]="{'is-invalid': !formUser.get('nome').valid && formUser.get('nome').touched}">
+              <small class="invalid-input" *ngIf="!formUser.get('nome').valid && formUser.get('nome').touched">*Campo obrigatório</small>
+            </div>
+          </div><!-- /col-md-6 -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="exemplo@exemplo.com"
+              [ngClass]="{'is-invalid': !formUser.get('email').valid && formUser.get('email').touched}">
+              <small class="invalid-input" *ngIf="!formUser.get('email').valid && formUser.get('email').touched">*Campo obrigatório</small>
+            </div>
+          </div><!-- /col-md-6 -->
+
+          <div class="col-md-4">
+            <label for="dslogin">Login</label><i class="feather icon-help-circle ml-1" placement="right" ngbTooltip="Login para Autenticação" style="cursor: pointer;"></i>
+            <input type="text" id="dslogin" formControlName="login" class="form-control"
+            [ngClass]="{'is-invalid': !formUser.get('login').valid && formUser.get('login').touched}">
+            <small class="invalid-input" *ngIf="!formUser.get('login').valid && formUser.get('login').touched">*Campo obrigatório</small>
+          </div><!-- /col-md-4 -->
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="senha">Senha</label>
+              <input type="password" formControlName="senha" id="senha" class="form-control"
+              [ngClass]="{'is-invalid': !formUser.get('senha').valid && formUser.get('senha').touched}">
+              <small class="invalid-input" *ngIf="!formUser.get('senha').valid && formUser.get('senha').touched">*Campo obrigatório</small>
+            </div>
+          </div><!-- /col-md-4 -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="confirmpassword">Confirme sua senha</label>
+              <input type="password" formControlName="confirmPassword" id="confirmpassword" class="form-control"
+              [ngClass]="{'is-invalid': formUser.get('confirmPassword').errors?.equalTo && formUser.get('confirmPassword').touched}">
+              <small class="invalid-input" *ngIf="formUser.get('confirmPassword').errors?.equalTo && formUser.get('confirmPassword').touched">Confirmação de Senha inválida.</small>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="estrangeiro" class="d-block">Sexo *</label>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="sexom" formControlName="sexo" class="custom-control-input" value="2">
+              <label class="custom-control-label d-flex align-items-center" for="sexom">Masculino</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="sexof" formControlName="sexo" class="custom-control-input" value="1">
+              <label class="custom-control-label d-flex align-items-center" for="sexof">Feminino</label>
+            </div>
+          </div><!-- /col-md-3 -->
+          <div class="col-md-3">
+            <label for="telefone">Telefone</label>
+            <input type="tel" formControlName="telefone" id="telefone" class="form-control" [textMask]="{mask: textPhoneMask, guide: true, modeClean: true, showMask: true}">
+          </div>
+        </div><!-- /row -->
+        <!-- ENDEREÇO -->
+        <h5 class="mt-3">Endereço</h5>
+        <hr>
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="cep">CEP</label>
+              <input type="text" id="cep" formControlName="cep" class="form-control" [textMask]="{mask: maskCep, guide: true, modeClean: true, showMask: true}"
+              [ngClass]="{'is-invalid': !formUser.get('cep').valid && formUser.get('cep').touched}">
+              <small class="invalid-input" *ngIf="!formUser.get('cep').valid && formUser.get('cep').touched">*Campo obrigatório</small>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="estado">Estado</label>
+              <ng-select
+                [items]="perfil"
+                bindValue="value"
+                formControlName="cd_estado"
+                placeholder="Ex: DF"
+                bindLabel="name"></ng-select>
+                <small class="invalid-input" *ngIf="!formUser.get('cd_estado').valid && formUser.get('cd_estado').touched">*Campo obrigatório</small>
+            </div>
+          </div><!-- /col-md-2 -->
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="cidade">Cidade *</label>
+              <ng-select
+              [items]="perfil"
+              bindValue="value"
+              formControlName="cd_cidade"
+              placeholder="Selecione sua cidade"
+              bindLabel="name"></ng-select>
+              <small class="invalid-input" *ngIf="!formUser.get('cd_cidade').valid && formUser.get('cd_cidade').touched">*Campo obrigatório</small>
+            </div>
+          </div><!-- /col-md-3 -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="endereco">Endereço *</label>
+              <input type="text" class="form-control" id="endereco" formControlName="endereco" placeholder="Ex: Rua São Francisco"
+              [ngClass]="{'is-invalid': !formUser.get('endereco').valid && formUser.get('endereco').touched}">
+              <small class="invalid-input" *ngIf="!formUser.get('endereco').valid && formUser.get('endereco').touched">*Campo obrigatório</small>
+            </div>
+          </div><!-- /col-md-5 -->
+        </div><!-- /row -->
+        <hr>
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-end">
+            <button class="btn btn-secondary mr-2" type="button" (click)="clearForm()" >Limpar</button>
+            <button class="btn btn-primary" type="button" (click)="submitNovoUsuario()" >Enviar</button>
+          </div>
+        </div><!-- /row -->
+      </form>
+    </app-card>
+  </div>
+</div>

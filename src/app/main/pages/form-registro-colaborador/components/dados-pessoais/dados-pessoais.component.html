@@ -1,0 +1,136 @@
+<h5>Dados Pessoais</h5>
+<hr>
+<form [formGroup]="formDadosPessoais">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="nome">Nome *</label>
+        <input type="text" class="form-control" id="nome" formControlName="nmColaborador" placeholder="Ex: João">
+      </div>
+    </div><!-- /col-md-6 -->
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="sobrenome">Sobrenome *</label>
+        <input type="text" class="form-control" id="sobrenome" formControlName="sobrenomeColaborador"
+          placeholder="Ex: Perreira Santos">
+      </div>
+    </div><!-- /col-md-6 -->
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="naturalidade">Naturalidade *</label>
+        <input type="text" class="form-control" id="naturalidade" formControlName="naturalidade"
+          placeholder="Ex: Brasileiro(a)">
+      </div>
+    </div><!-- /col-md-5 -->
+
+    <div class="col-md-2">
+      <label for="estrangeiro" class="d-block">Estrangeiro *</label>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="radio1" formControlName="naturalidadeEstrangeiro" class="custom-control-input"
+          value="S">
+        <label class="custom-control-label d-flex align-items-center" for="radio1">Sim</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="radio2" formControlName="naturalidadeEstrangeiro" class="custom-control-input"
+          value="N">
+        <label class="custom-control-label d-flex align-items-center" for="radio2">Não</label>
+      </div>
+    </div><!-- /col-md-3 -->
+    <div class="col-md-3">
+      <label for="estrangeiro" class="d-block">Sexo *</label>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="sexom" formControlName="sexo" class="custom-control-input" value="M">
+        <label class="custom-control-label d-flex align-items-center" for="sexom">Masculino</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="sexof" formControlName="sexo" class="custom-control-input" value="F">
+        <label class="custom-control-label d-flex align-items-center" for="sexof">Feminino</label>
+      </div>
+    </div><!-- /col-md-3 -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="dtnascimento">Data Nascimento *</label>
+        <input type="text" class="form-control" id="dtnascimento" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"
+          [placement]="placement" formControlName="dtNascimento" placeholder="DD/MM/YYYY">
+      </div>
+    </div><!-- /col-md-4 -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="naturalidade" class="d-block">Estado Civil *</label>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="solteiro" formControlName="estadoCivil" class="custom-control-input" value="solteiro">
+          <label class="custom-control-label d-flex align-items-center" for="solteiro">Solteiro</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="casado" formControlName="estadoCivil" class="custom-control-input" value="casado">
+          <label class="custom-control-label d-flex align-items-center" for="casado">Casado</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="divorciado" formControlName="estadoCivil" class="custom-control-input"
+            value="divorciado">
+          <label class="custom-control-label d-flex align-items-center" for="divorciado">Divorciado</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="viuvo" formControlName="estadoCivil" class="custom-control-input" value="viuvo">
+          <label class="custom-control-label d-flex align-items-center" for="viuvo">Viúvo</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="separado" formControlName="estadoCivil" class="custom-control-input" value="separado">
+          <label class="custom-control-label d-flex align-items-center" for="separado">Separado</label>
+        </div>
+      </div>
+    </div><!-- /col-md-4 -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="tel">Telefone</label>
+        <input type="tel" id="tel" formControlName="telefone" class="form-control" placeholder="Ex: 61 98899-8223">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nmConjuge">Nome do Cônjuge *</label>
+        <input type="text" class="form-control" id="nmConjuge" formControlName="nmConjuge" placeholder="">
+      </div>
+    </div><!-- /col-md-4 -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nmPai">Nome do Pai *</label>
+        <input type="text" class="form-control" id="nmPai" formControlName="nmPai"
+          placeholder="Ex: Adolfo Pereira Santos">
+      </div>
+    </div><!-- /col-md-4 -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="nmMae">Nome da Mãe *</label>
+        <input type="text" class="form-control" id="nmMae" formControlName="nmMae" placeholder="Ex: Maria Eduarda">
+      </div>
+    </div><!-- /col-md-4 -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Ex: exemplo@gmail.com">
+      </div>
+    </div><!-- /col-md-4 -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="escolaridade">Escolaridade *</label>
+        <ng-select #escolaridade [items]="escolaridades" [selectOnTab]="true" bindValue="value" labelForId="age"
+          placeholder="Selecione" formControlName="escolaridade">
+        </ng-select>
+      </div>
+    </div><!-- /col-md-4 -->
+    <div class="col-md-6">
+      <label for="">Anexo de Escolaridade *</label>
+      <file-upload simple>
+        <ng-template let-file #placeholder>
+          <ng-container *ngIf="file; else emptyList">
+            {{ file.name }}
+          </ng-container>
+          <ng-template #emptyList>
+            Selecione o arquivo...
+          </ng-template>
+        </ng-template>
+      </file-upload>
+    </div>
+  </div>
+</form>

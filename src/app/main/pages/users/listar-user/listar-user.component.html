@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Usuários Cadastrados">
+      <form [formGroup]="formLista">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="perfil">Perfil *</label>
+              <ng-select
+                [items]="perfil"
+                bindValue="value"
+                bindLabel="name"
+                formControlName="idPerfil"
+                autofocus></ng-select>
+            </div>
+          </div><!-- /col-md-3 -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="perfil">Empresa *</label>
+              <ng-select
+                [items]="empresas"
+                bindValue="value"
+                formControlName="idEmpresa"
+                bindLabel="name"></ng-select>
+            </div>
+          </div><!-- /col-md-4 -->
+          <div class="col-md-3">
+            <label for="nmUser">Nome</label>
+            <input type="text" id="nmUser" formControlName="nmUser" class="form-control">
+
+          </div><!-- /col-md-4 -->
+          <div class="col-md-2">
+            <label for="dslogin">Login</label>
+            <input type="text" id="dslogin" formControlName="dsLogin" class="form-control">
+          </div><!-- /col-md-4 -->
+          <div class="col-md-3">
+            <label for="estrangeiro" class="d-block">Status *</label>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="statusa" formControlName="status" class="custom-control-input" value="A">
+              <label class="custom-control-label d-flex align-items-center" for="statusa">Ativo</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="statusi" formControlName="status" class="custom-control-input" value="I">
+              <label class="custom-control-label d-flex align-items-center" for="statusi">Inativo</label>
+            </div>
+          </div><!-- /col-md-3 -->
+        </div><!-- /row -->
+        <hr>
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-end">
+            <button class="btn btn-secondary mr-2" type="button" (click)="clearForm()" >Limpar</button>
+            <button class="btn btn-primary" type="button" (click)="getUsuarios()" >Pesquisar</button>
+          </div>
+        </div><!-- /row -->
+      </form>
+      <div class="table-responsive"  ><!--*ngIf="usuarios.length > 0"-->
+        <h4 class="text-center mb-3 mt-3">Detalhes Usuário</h4>
+        <table class="table table-hover">
+          <thead>
+            <tr class="text-center">
+              <th scope="col">Nome</th>
+              <th scope="col">Login</th>
+              <th scope="col">Perfil</th>
+              <th scope="col">Empresa</th>
+              <th scope="col">Status</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  class="text-center" ><!--*ngFor="let usuario of usuarios"-->
+              <td>asdsadasdsada</td>
+              <td>asdasdasdsad</td>
+              <td>adsadasdad</td>
+              <td>asasdsadada</td>
+              <td>asasddada</td>
+              <td>
+                <button type="button" class="btn btn-outline-warning btn-sm">
+                  <i class="feather icon-edit"></i>
+                  Editar
+                </button><!--[routerLink]="['/administracao/usuario/editar', usuario.cdUser]"-->
+                <button type="button" class="btn btn-outline-danger btn-sm ml-2">
+                  <i class="feather icon-x"></i>
+                  Inativar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-card>
+  </div>
+</div>

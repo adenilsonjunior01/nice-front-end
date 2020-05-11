@@ -44,6 +44,8 @@ export class AuthSigninComponent implements OnInit {
             return this.formAuth.get('password').reset();
           } else if (err.status === 500) {
             return this.toast.toastCustom('error', 'Erro na comunicação com o servidor.');
+          } else if (err.status === 401) {
+            return this.toast.toastCustom('error', 'Usuário ou senha inválido.');
           }
         });
     } else {

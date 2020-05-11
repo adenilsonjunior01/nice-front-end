@@ -18,20 +18,31 @@ export class EditPasswordComponent implements OnInit {
   ngOnInit() {
     this.formulario();
   }
-
+ // /auth/trocaSenha {put} -> JSON {"password":"senhaNova"}
   private formulario(): void {
-    const newPassword = new FormControl('', Validators.required);
-    const confirmPassword = new FormControl('', [Validators.required, CustomValidators.equalTo(newPassword)]);
+    const password = new FormControl('', Validators.required);
+    const confirmPassword = new FormControl('', [Validators.required, CustomValidators.equalTo(password)]);
     this.formPassword = this.fb.group({
       oldPassword: [null, Validators.required],
-      newPassword,
+      password,
       confirmPassword
     });
   }
 
   public submitNewPassword() {
     if (this.formPassword.valid) {
-
+      let valuesSubmit = Object.assign({}, this.formPassword.value);
+      delete(valuesSubmit.oldPassword);
+      delete(valuesSubmit.confirmPassword);
+      this.service.submitNewPassword(valuesSubmit).subscribe(
+        response => {
+          this.toast.toastCustom('success', 'Senha alterada com sucesso');
+          this.formPassword.reset();
+        },
+        err => {
+          this.toast.toastCustom('error', 'Não foi possível alterar a senha');
+        }
+      )
     } else {
       Object.keys(this.formPassword.controls).forEach(campo => {
         const controle = this.formPassword.get(campo);

@@ -1,0 +1,13 @@
+blockquote {
+  dl {
+    dt {
+      font-size: 16px !important;
+    }
+    dd {
+      font-size: 14px !important;
+    }
+  }
+}
+::ng-deep .modal-lg.modal-detalhes {
+  width: 800px !important;
+}

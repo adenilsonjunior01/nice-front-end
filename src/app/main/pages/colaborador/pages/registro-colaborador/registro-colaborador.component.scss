@@ -1,0 +1,13 @@
+
+::ng-deep ul.steps-indicator {
+  li.navigable {
+    &::after {
+      background: #4099ff !important;
+    }
+  }
+  li.editing {
+    &::after {
+      background: linear-gradient(to right, #a0a0a0, #808080);
+    }
+  }
+}

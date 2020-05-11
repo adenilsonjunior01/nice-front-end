@@ -30,14 +30,18 @@ import { NgbButtonsModule, NgbDropdownModule, NgbTabsetModule, NgbTooltipModule,
 import { ErrorNotFoundComponent } from './main/pages/page-errors/error-not-found/error-not-found.component';
 import { ErrorServidorComponent } from './main/pages/page-errors/error-servidor/error-servidor.component';
 import { UsersModule } from './main/pages/users/users.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { EmpresaModule } from './main/pages/form-registro-colaborador/registro/empresa/empresa.module';
+import { HttpClientModule } from '@angular/common/http';
+import { RegistroEmpresaModule } from './main/pages/empresa/pages/empresa/registro-empresa.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { EditUserModule } from './main/pages/users/edit-user/edit-user.module';
-import { RefreshTokenInterceptor } from './main/pages/authentication/interceptors/refresh-token-interceptor';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ListarColaboradoresModule } from './main/pages/colaborador/pages/listar-colaboradores/listar-colaboradores.module';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 export function tokenGetter() {
-  return localStorage.getItem('access_token');
+  return localStorage.getItem('token');
 }
 
 registerLocaleData(localePt, 'pt');
@@ -74,18 +78,23 @@ registerLocaleData(localePt, 'pt');
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    EmpresaModule,
+    RegistroEmpresaModule,
     BsDatepickerModule.forRoot(),
     EditUserModule,
+    ModalModule.forRoot(),
+    ListarColaboradoresModule,
+    TooltipModule.forRoot(),
+    AlertModule.forRoot(),
+    TabsModule.forRoot(),
   ],
   providers: [
     NavigationItem,
     { provide: LOCALE_ID, useValue: 'pt'},
-    {
+    /*{
       provide: HTTP_INTERCEPTORS,
       useClass: RefreshTokenInterceptor,
       multi: true
-    }
+    }*/
   ],
   bootstrap: [AppComponent]
 })

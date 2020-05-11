@@ -1,5 +1,5 @@
 <ul class="navbar-nav ml-auto">
-  <li>
+  <!-- <li>
     <div class="dropdown" ngbDropdown placement="auto">
       <a ngbDropdownToggle href="javascript:" data-toggle="dropdown"><i class="icon feather icon-bell"></i><span class="badge bg-danger"><span class="sr-only"></span></span></a>
       <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right notification">
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-  </li>
+  </li> -->
   <li>
     <div class="dropdown drp-user" ngbDropdown placement="auto">
       <a href="javascript:" ngbDropdownToggle data-toggle="dropdown">
@@ -65,9 +65,9 @@
           </a>
         </div>
         <ul class="pro-body">
-          <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Meu Perfil</a></li>
+          <!-- <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Meu Perfil</a></li> -->
           <li><a [routerLink]="['/user/editar/senha']" class="dropdown-item"><i class="feather icon-edit"></i> Editar Senha</a></li>
-          <li><a class="dropdown-item"><i class="feather icon-mail"></i> Minhas Menssagens</a></li>
+          <!-- <li><a class="dropdown-item"><i class="feather icon-mail"></i> Minhas Menssagens</a></li> -->
           <li><a (click)="logout()" class="dropdown-item cursor"><i class="feather icon-log-out"></i> Sair</a></li>
         </ul>
       </div>

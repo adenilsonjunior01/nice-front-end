@@ -10,6 +10,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FormDebugComponent } from './components/form-debug/form-debug.component';
 import { CampoControlErroComponent } from './components/campo-control-erro/campo-control-erro.component';
 import { ErroMsgComponent } from './components/erro-msg/erro-msg.component';
+import { TooltipModule } from 'ngx-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { TabsModule } from 'ngx-bootstrap';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -23,7 +27,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
     CardModule,
     BreadcrumbModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    TooltipModule,
+    NgSelectModule,
+    AlertModule,
+    TabsModule
   ],
   exports: [
     CommonModule,
@@ -36,7 +44,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SpinnerComponent,
     FormDebugComponent,
     CampoControlErroComponent,
-    ErroMsgComponent
+    ErroMsgComponent,
+    TooltipModule,
+    NgSelectModule,
+    AlertModule,
+    TabsModule
   ],
   declarations: [
     SpinnerComponent,

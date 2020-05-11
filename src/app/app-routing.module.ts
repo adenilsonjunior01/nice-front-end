@@ -32,9 +32,17 @@ const routes: Routes = [
         canActivate: [AuthorizationGuard]
       },
       {
+        path: 'colaborador',
+        loadChildren: () => import('./main/pages/colaborador/form-registro-colaborador.module').then(module => module.FormRegistroColaboradorModule)
+      },
+      {
+        path: 'empresa',
+        loadChildren: () => import('./main/pages/empresa/empresa.module').then(module => module.EmpresaModule)
+      },
+      {
         path: 'registro',
         // tslint:disable-next-line: max-line-length
-        loadChildren: () => import('./main/pages/form-registro-colaborador/form-registro-colaborador.module').then(module => module.FormRegistroColaboradorModule),
+        loadChildren: () => import('./main/pages/colaborador/form-registro-colaborador.module').then(module => module.FormRegistroColaboradorModule),
         canActivate: [AuthorizationGuard]
       }
     ]

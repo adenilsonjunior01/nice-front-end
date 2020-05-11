@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Listagem de Colaboradores">
+      <div class="row">
+        <div class="col-md-4">
+          <form [formGroup]="formColaborador">
+            <div class="form-group">
+              <label for="status">Colaborador por Status</label>
+              <select formControlName="status_cadastro" id="status" class="form-control" (change)="getColaboradores()">
+                <option [value]="item.value" *ngFor="let item of status">{{ item.label }}</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <h4 class="text-center mb-3 mt-3">Colaboradores</h4>
+        <table class="table table-hover" *ngIf="colaboradores.length > 0; else notfound">
+          <thead>
+            <tr class="text-center">
+              <th scope="col">Nome</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Empresa</th>
+              <th scope="col">Status Cadastro</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr  class="text-center" *ngFor="let item of colaboradores | paginate: {
+                itemsPerPage: filtro.size,
+                currentPage: currentPage,
+                totalItems: totalElements } ">
+              <td>{{ item?.nome }}</td>
+              <td>{{ item?.email }}</td>
+              <td>{{ item?.nmEmpresa }}</td>
+              <td class="badge badge-success p-2 mt-2" [ngClass]="{'badge-info': item?.status_cadastro === 0}">{{ item?.status_cadastro === 0 ? 'Aguardando Avaliação' : '' }}</td>
+              <td class="badge badge-success p-2 mt-2" [ngClass]="{'badge-success': item?.status_cadastro === 1}">{{ item?.status_cadastro === 1 ? 'Ativo' : '' }}</td>
+              <td class="badge badge-success p-2 mt-2" [ngClass]="{'badge-danger': item?.status_cadastro === 2}">{{ item?.status_cadastro === 2 ? 'Inativo' : '' }}</td>
+              <td class="badge badge-success p-2 mt-2" [ngClass]="{'badge-warning': item?.status_cadastro === 3}">{{ item?.status_cadastro === 3 ? 'Cadastro Recusado' : '' }}</td>
+              <td>
+                <app-detalhes-colaborador [datas]="item" class="pr-2"></app-detalhes-colaborador>
+                <app-editar-colaborador [datas]="item"></app-editar-colaborador>
+                <button type="button" class="btn btn-outline-info btn-sm ml-2" (click)="sweetConfirm(item.status_cadastro, item.id)" *ngIf="item?.status_cadastro === 0" tooltip="Validar">
+                  <i class="feather icon-check"></i>
+                </button>
+                <button type="button" class="btn btn-outline-primary btn-sm ml-2" (click)="sweetConfirm(item.status_cadastro, item.id)" *ngIf="item?.status_cadastro === 1" tooltip="Inativar">
+                  <i class="feather icon-x"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-sm ml-2" (click)="sweetConfirm(item.status_cadastro, item.id)" *ngIf="item?.status_cadastro === 2" tooltip="Ativo">
+                  <i class="feather icon-check"></i>
+                </button>
+                <button type="button" class="btn btn-outline-warning btn-sm ml-2" (click)="sweetConfirm(item.status_cadastro, item.id)" *ngIf="item?.status_cadastro === 3" tooltip="Ativar Cadastro">
+                  <i class="feather icon-x"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-center">
+            <pagination-controls
+              class="justify-content-center pagination-sm"
+              (pageChange)="pageChanged($event)"
+              maxSize="8"
+              directionLinks="true"
+              autoHide="true"
+              responsive="true"
+              previousLabel=""
+              nextLabel=""></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<ng-template #notfound>
+  <span style="font-size: 16px;">Nenhum registro de colaborador encontrado.</span>
+</ng-template>

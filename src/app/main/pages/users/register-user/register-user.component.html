@@ -22,9 +22,8 @@
               <label for="perfil">Empresa *</label>
               <ng-select
                 [items]="empresas"
-                bindValue="value"
-                formControlName="idEmpresa"
-                bindLabel="name"></ng-select>
+                bindValue="id" bindLabel="ds_empresa"
+                formControlName="idEmpresa"></ng-select>
                 <small class="invalid-input" *ngIf="!formUser.get('idEmpresa').valid && formUser.get('idEmpresa').touched">*Campo obrigatório</small>
             </div>
           </div><!-- /col-md-4 -->
@@ -81,7 +80,9 @@
           </div><!-- /col-md-3 -->
           <div class="col-md-3">
             <label for="telefone">Telefone</label>
-            <input type="tel" formControlName="telefone" id="telefone" class="form-control" [textMask]="{mask: textPhoneMask, guide: true, modeClean: true, showMask: true}">
+            <input type="tel" formControlName="telefone" id="telefone" class="form-control" [textMask]="{mask: textPhoneMask, guide: true, modeClean: true, showMask: true}"
+            [ngClass]="{'is-invalid': !formUser.get('telefone').valid && formUser.get('telefone').touched}">
+            <small class="invalid-input" *ngIf="!formUser.get('telefone').valid && formUser.get('telefone').touched">*Campo obrigatório</small>
           </div>
         </div><!-- /row -->
         <!-- ENDEREÇO -->
@@ -92,32 +93,31 @@
             <div class="form-group">
               <label for="cep">CEP</label>
               <input type="text" id="cep" formControlName="cep" class="form-control" [textMask]="{mask: maskCep, guide: true, modeClean: true, showMask: true}"
-              [ngClass]="{'is-invalid': !formUser.get('cep').valid && formUser.get('cep').touched}">
+              [ngClass]="{'is-invalid': !formUser.get('cep').valid && formUser.get('cep').touched}"
+              (change)="getDataAddress($event.target.value)">
               <small class="invalid-input" *ngIf="!formUser.get('cep').valid && formUser.get('cep').touched">*Campo obrigatório</small>
+              <div *ngIf="loading" class="d-inline pt-2">
+                <div class="spinner-border text-secondary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <span class="pl-2">Buscando dados..</span>
+              </div>
             </div>
           </div>
           <div class="col-md-2">
             <div class="form-group">
               <label for="estado">Estado</label>
-              <ng-select
-                [items]="perfil"
-                bindValue="value"
-                formControlName="cd_estado"
-                placeholder="Ex: DF"
-                bindLabel="name"></ng-select>
-                <small class="invalid-input" *ngIf="!formUser.get('cd_estado').valid && formUser.get('cd_estado').touched">*Campo obrigatório</small>
+              <input type="text" class="form-control" id="estado" formControlName="estado" placeholder="Ex: Rua São Francisco"
+              [ngClass]="{'is-invalid': !formUser.get('estado').valid && formUser.get('estado').touched}">
+              <small class="invalid-input" *ngIf="!formUser.get('estado').valid && formUser.get('estado').touched">*Campo obrigatório</small>
             </div>
           </div><!-- /col-md-2 -->
           <div class="col-md-3">
             <div class="form-group">
               <label for="cidade">Cidade *</label>
-              <ng-select
-              [items]="perfil"
-              bindValue="value"
-              formControlName="cd_cidade"
-              placeholder="Selecione sua cidade"
-              bindLabel="name"></ng-select>
-              <small class="invalid-input" *ngIf="!formUser.get('cd_cidade').valid && formUser.get('cd_cidade').touched">*Campo obrigatório</small>
+              <input type="text" class="form-control" id="cidade" formControlName="cidade" placeholder="Ex: Rua São Francisco"
+              [ngClass]="{'is-invalid': !formUser.get('cidade').valid && formUser.get('cidade').touched}">
+              <small class="invalid-input" *ngIf="!formUser.get('cidade').valid && formUser.get('cidade').touched">*Campo obrigatório</small>
             </div>
           </div><!-- /col-md-3 -->
           <div class="col-md-4">

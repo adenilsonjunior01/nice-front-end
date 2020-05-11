@@ -5,8 +5,9 @@
         <div class="col-md-12">
           <form [formGroup]="formAuth" (ngSubmit)="authentication()" >
             <div class="card-body">
-              <img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
-              <h4 class="mb-3 f-w-400 letter-spacing">Autenticação</h4>
+              <!-- <img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4"> -->
+              <h4 class="mb-3 f-w-500 letter-spacing">Nice Contabilidade</h4>
+              <h5 class="mb-3 f-w-400 letter-spacing">Autenticação</h5>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="feather icon-mail"></i></span>
@@ -31,7 +32,7 @@
                 </div>
               </div>
               <button type="submit" class="btn btn-block btn-primary mb-4 letter-spacing">Entrar</button>
-              <p class="mb-2 text-muted">Esqueceu a senha? <a [routerLink]="['/auth/reset-password']" class="f-w-400">Resetar</a></p>
+              <!-- <a class="mb-2 text-muted">Esqueceu a senha? <a [routerLink]="['/auth/reset-password']" class="f-w-400">Resetar</a></p> -->
             </div><!-- /card-body-->
           </form>
         </div>

@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Razão Social</th>
+      <th scope="col">Nome Fantasia</th>
+      <th scope="col">Cidade</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Bairro</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empresa of datas; index as i">
+      <th scope="row">{{ i+1 }}</th>
+      <td>{{ empresa?.ds_empresa }}</td>
+      <td>{{ empresa?.razao_social }}</td>
+      <td>{{ empresa?.nome_fantasia }}</td>
+      <td>{{ empresa?.cidade }}</td>
+      <td>{{ empresa?.estado }}</td>
+      <td>{{ empresa?.bairro }}</td>
+    </tr>
+  </tbody>
+</table>

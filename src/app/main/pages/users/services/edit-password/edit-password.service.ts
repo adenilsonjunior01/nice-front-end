@@ -11,7 +11,7 @@ import { catchError, take } from 'rxjs/operators';
 export class EditPasswordService {
   private readonly API_PASSWORD = `${environment.apiAuthentication}`;
   private readonly headers = new HttpHeaders({
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json'
   });
 
@@ -19,7 +19,7 @@ export class EditPasswordService {
   constructor(private http: HttpClient) { }
 
   public submitNewPassword(password: any): Observable<any> {
-    return this.http.put<any>(`${this.API_PASSWORD}`, password, {headers: this.headers})
+    return this.http.put<any>(`${this.API_PASSWORD}/auth/trocaSenha `, password, {headers: this.headers})
     .pipe(
       catchError(err => this.handleError(err)),
       take(1));

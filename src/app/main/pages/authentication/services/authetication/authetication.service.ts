@@ -14,7 +14,6 @@ import { Tokens } from '../../models/tokens';
 export class AutheticationService {
   private readonly API_REQUEST_AUTHETICATION = `${environment.apiAuthentication}`;
   private readonly JWT_NAME_TOKEN = 'token';
-  private readonly REFRESH_TOKEN_NAME = 'refresh_token';
   tokens = new Tokens();
 
   private readonly headers = new HttpHeaders({
@@ -36,7 +35,6 @@ export class AutheticationService {
         catchError(error => this.handleError(error)),
         tap((resp: any) => {
           localStorage.setItem('token', resp.access_token);
-          localStorage.setItem('refresh_token', resp.refresh_token);
         }),
         take(1));
   }
@@ -53,12 +51,12 @@ export class AutheticationService {
   }
 
   public logout(): void {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('token');
     this.route.navigateByUrl('/auth/login');
   }
 
-  private decodeToken(): any {
-    return this.jwt.decodeToken(localStorage.getItem('access_token'));
+  public decodeToken(): any {
+    return this.jwt.decodeToken(localStorage.getItem('token'));
   }
 
   public tokenIsExperid(): any {
@@ -80,7 +78,9 @@ export class AutheticationService {
 
   public getUserNameInToken(): string {
     const tokenDecode = this.decodeToken();
-    return tokenDecode.nome;
+    if (tokenDecode.nome !== null)
+      return tokenDecode.nome;
+    return
   }
   private getRefreshToken() {
     return localStorage.getItem('refresh_token');

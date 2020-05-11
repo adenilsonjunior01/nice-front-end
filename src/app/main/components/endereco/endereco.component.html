@@ -1,0 +1,66 @@
+<h5>Endereço</h5>
+<hr>
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="cep">CEP *</label>
+        <input type="text" class="form-control" id="cep" formControlName="cep" placeholder="71272-140"
+        [ngClass]="{'is-invalid': !form.get('cep').valid && form.get('cep').touched}" (change)="getDataAddress($event.target.value)">
+        <small class="invalid-input" *ngIf="!form.get('cep').valid && form.get('cep').touched">*Campo obrigatório</small>
+        <div *ngIf="loading" class="d-inline pt-2">
+          <div class="spinner-border text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <span class="pl-2">Buscando dados..</span>
+        </div>
+      </div>
+    </div><!-- /col-md-6 -->
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="numero">Número *</label>
+        <input type="text" class="form-control" id="numero" formControlName="numero" placeholder="203"
+        [ngClass]="{'is-invalid': !form.get('numero').valid && form.get('numero').touched}">
+        <small class="invalid-input" *ngIf="!form.get('numero').valid && form.get('numero').touched">*Campo obrigatório</small>
+      </div>
+    </div><!-- /col-md-6 -->
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="complemento">Complemento</label>
+        <input type="text" class="form-control" id="complemento" formControlName="complemento" placeholder="Ex: Ao lado do Supermercado">
+      </div>
+    </div><!-- /col-md-6 -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="rua">Rua *</label>
+        <input type="text" class="form-control" id="rua" formControlName="rua" placeholder="Ex: Rua J Conjunto A"
+        [ngClass]="{'is-invalid': !form.get('rua').valid && form.get('rua').touched}">
+        <small class="invalid-input" *ngIf="!form.get('rua').valid && form.get('rua').touched">*Campo obrigatório</small>
+      </div>
+    </div><!-- /col-md-6 -->
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="bairro">Bairro *</label>
+        <input type="text" class="form-control" id="bairro" formControlName="bairro" placeholder="Ex: São Francisco"
+        [ngClass]="{'is-invalid': !form.get('bairro').valid && form.get('bairro').touched}">
+        <small class="invalid-input" *ngIf="!form.get('bairro').valid && form.get('bairro').touched">*Campo obrigatório</small>
+      </div>
+    </div><!-- /col-md-6 -->
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="cidade">Cidade *</label>
+        <input type="text" class="form-control" id="cidade" formControlName="cidade" placeholder="Ex: Brasília"
+        [ngClass]="{'is-invalid': !form.get('cidade').valid && form.get('cidade').touched}">
+        <small class="invalid-input" *ngIf="!form.get('cidade').valid && form.get('cidade').touched">*Campo obrigatório</small>
+      </div>
+    </div><!-- /col-md-6 -->
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="estado">Estado *</label>
+        <input type="text" class="form-control" id="estado" formControlName="estado" placeholder="Ex: DF"
+        [ngClass]="{'is-invalid': !form.get('estado').valid && form.get('estado').touched}">
+        <small class="invalid-input" *ngIf="!form.get('estado').valid && form.get('estado').touched">*Campo obrigatório</small>
+      </div>
+    </div><!-- /col-md-6 -->
+  </div><!-- /row -->
+</form>

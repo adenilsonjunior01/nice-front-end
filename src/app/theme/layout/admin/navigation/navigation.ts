@@ -38,7 +38,7 @@ const NavigationItems = [
         type: 'item',
         icon: 'feather icon-home',
         url: '/dashboard/analytics',
-        breadcrumbs: false
+        breadcrumbs: false,
       },
       {
         id: 'home',
@@ -73,7 +73,19 @@ const NavigationItems = [
             title: 'Listar',
             type: 'item',
             url: '/user/listar'
-          }
+          },
+          {
+            id: 'listar',
+            title: 'Listar',
+            type: 'item',
+            url: '/user/listar'
+          },
+          {
+            id: 'listar',
+            title: 'Listar',
+            type: 'item',
+            url: '/user/listar'
+          },
         ]
       }
     ]
@@ -86,64 +98,52 @@ const NavigationItems = [
     children: [
       {
         id: 'registro',
-        title: 'Registro',
+        title: 'Colaboradores',
         type: 'collapse',
         icon: 'feather icon-file-text',
         children: [
           {
-            id: 'colaborador',
-            title: 'Colaborador',
+            id: 'cadastrar-colaborador',
+            title: 'Cadastrar',
             type: 'item',
-            url: '/registro/colaborador'
+            url: '/colaborador/registro'
           },
           {
-            id: 'empresa',
-            title: 'Empresa',
+            id: 'lista-colaboradores',
+            title: 'Listar',
             type: 'item',
-            url: '/registro/empresa'
+            url: '/colaborador/listar'
           }
         ]
       }
     ]
   },
   {
-    id: 'pages',
-    title: 'Pages',
+    id: 'empresas',
+    title: 'Gestão de Empresas',
     type: 'group',
-    icon: 'feather icon-file-text',
+    icon: 'feather icon-layout',
     children: [
       {
-        id: 'auth',
-        title: 'Authentication',
+        id: 'empresa',
+        title: 'Empresa',
         type: 'collapse',
-        icon: 'feather icon-lock',
+        icon: 'feather icon-file-text',
         children: [
           {
-            id: 'signup',
-            title: 'Sign up',
+            id: 'cadastrar-empresa',
+            title: 'Cadastrar',
             type: 'item',
-            url: '/auth/signup',
-            target: true,
-            breadcrumbs: false
+            url: '/empresa/registro'
           },
           {
-            id: 'signin',
-            title: 'Sign in',
+            id: 'listar-empresa',
+            title: 'Listar',
             type: 'item',
-            url: '/auth/login',
-            target: true,
-            breadcrumbs: false
+            url: '/empresa/listar'
           }
         ]
       },
-      {
-        id: 'sample-page',
-        title: 'Sample Page',
-        type: 'item',
-        url: '/sample-page',
-        classes: 'nav-item',
-        icon: 'feather icon-sidebar'
-      }
     ]
   }
 ];

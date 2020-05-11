@@ -1,0 +1,55 @@
+<button type="button" class="btn btn-outline-secondary btn-sm" (click)="openModal(modal)" tooltip="Visualizaritar empresa">
+  <i class="feather icon-zoom-in"></i>
+</button>
+<ng-template #modal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Detalhes da Empresa</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <blockquote class="blockquote">
+      <dl class="dl-horizontal row">
+        <dt class="col-sm-3 pr-md-0">Empresa</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.ds_empresa }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Razão Social</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.razao_social }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Nome Fantasia</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.nome_fantasia }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">CNPJ</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.cnpj | cnpj }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Cidade</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.cidade }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Estado</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.estado }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Bairro</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.bairro }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Rua</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.rua }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Número</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.numero }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">CEP</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.cep }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Complemento</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.complemento }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Status</dt>
+        <dd class="col-sm-9 pl-0">
+          <span class="badge badge-success" [ngClass]="{'badge-danger': datas?.status === 0}">{{ datas?.status === 0 ? 'Inativo' : 'Ativo' }}</span>
+
+        </dd>
+      </dl>
+    </blockquote>
+  </div>
+</ng-template>

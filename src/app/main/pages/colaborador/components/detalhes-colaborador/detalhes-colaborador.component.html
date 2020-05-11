@@ -1,0 +1,54 @@
+<button type="button" class="btn btn-outline-secondary btn-sm" (click)="openModal(modal)" tooltip="Visualizaritar empresa">
+  <i class="feather icon-zoom-in"></i>
+</button>
+<ng-template #modal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Detalhes do Colaborador</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <blockquote class="blockquote">
+      <dl class="dl-horizontal row">
+        <dt class="col-sm-3 pr-md-0">Nome</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.nome }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Sexo</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.sexo }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Data Nascimento</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.dt_nascimento }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Naturalidade</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.naturalidade }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Escolaridade</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.escolaridade }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">E-mail</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.email }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Telefone</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.telefone }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">CPF</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.cpf }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Nome do Pai</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.nome_pai }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Nome da Mãe</dt>
+        <dd class="col-sm-9 pl-0">{{ datas?.nome_mae }}</dd>
+
+        <dt class="col-sm-3 pr-md-0">Status</dt>
+        <dd class="col-sm-9 pl-0">
+          <span class="badge" *ngIf="datas?.status_cadastro === 0" [ngClass]="{'badge-info': datas?.status_cadastro === 0}">{{ datas?.status_cadastro === 0 ? 'Aguardando Avaliação' : '' }}</span>
+          <span class="badge'" *ngIf="datas?.status_cadastro === 1" [ngClass]="{'badge-success': datas?.status_cadastro === 1}">{{ datas?.status_cadastro === 1 ? 'Ativo' : '' }}</span>
+          <span class="badge" *ngIf="datas?.status_cadastro === 2" [ngClass]="{'badge-danger': datas?.status_cadastro === 2}">{{ datas?.status_cadastro === 2 ? 'Inativo' : '' }}</span>
+          <span class="badge" *ngIf="datas?.status_cadastro === 3" [ngClass]="{'badge-warning': datas?.status_cadastro === 2}">{{ datas?.status_cadastro === 3 ? 'Cadastro Recusado' : '' }}</span>
+        </dd>
+      </dl>
+    </blockquote>
+  </div>
+</ng-template>

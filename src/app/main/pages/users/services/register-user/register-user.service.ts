@@ -11,7 +11,7 @@ import { SweetAlertComponent } from '../../../../../theme/shared/components/swee
 export class RegisterUserService {
   private readonly API_SUBMIT = `${environment.apiAuthentication}`;
   private readonly headers = new HttpHeaders({
-    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json'
   });
 
@@ -47,7 +47,8 @@ export class RegisterUserService {
   public getPerfils(): Array<object> {
     return [
       { value: 1, name: 'ADMINISTRADOR'},
-      { value: 2, name: 'COLABORADOR'},
+      { value: 2, name: 'COLABORADOR NICE'},
+      { value: 3, name: 'CLIENTE'}
     ];
   }
 

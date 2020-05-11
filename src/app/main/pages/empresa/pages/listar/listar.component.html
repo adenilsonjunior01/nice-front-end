@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Empresas Cadastradas">
+      <h4 class="text-center mb-3 mt-3">Empresas</h4>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr class="text-center">
+              <th scope="col">Empresa</th>
+              <th scope="col">Razão Social</th>
+              <th scope="col">Nome Fantasia</th>
+              <th scope="col">Data Criação</th>
+              <th scope="col">Data Atualização</th>
+              <th scope="col">Status</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr  class="text-center" *ngFor="let item of empresas | paginate: {
+                itemsPerPage: filtro.size,
+                currentPage: currentPage,
+                totalItems: totalElements } ">
+              <td>{{ item?.ds_empresa }}</td>
+              <td>{{ item?.razao_social }}</td>
+              <td>{{ item?.nome_fantasia }}</td>
+              <td>{{ item?.created_at | date: 'medium'}}</td>
+              <td>{{ item?.updated_at }}</td>
+              <td class="badge badge-success p-2 mt-2" [ngClass]="{'badge-danger': item?.status === 0}">{{ item?.status === 0 ? 'Inativo' : 'Ativo' }}</td>
+              <td class="pt-2">
+                <app-modal-detalhes-empresa [datas]="item"></app-modal-detalhes-empresa>
+                <app-editar-empresa [dados]="item"></app-editar-empresa>
+                <!-- <button type="button" class="btn btn-outline-warning btn-sm ml-2" (click)="editarEmpresa(item, editEmpresa)" tooltip="Editar empresa">
+                  <i class="feather icon-edit"></i>
+                </button> -->
+                <button type="button" class="btn btn-outline-success btn-sm ml-2" (click)="sweetConfirm(item.id)" *ngIf="item?.status === 0" tooltip="Ativar empresa">
+                  <i class="feather icon-check"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-sm ml-2" (click)="sweetConfirm(item.id)" *ngIf="item?.status === 1" tooltip="Inativar empresa">
+                  <i class="feather icon-x"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <pagination-controls
+            class="justify-content-center pagination-sm"
+            (pageChange)="pageChanged($event)"
+            maxSize="8"
+            directionLinks="true"
+            autoHide="true"
+            responsive="true"
+            previousLabel=""
+            nextLabel=""></pagination-controls>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>

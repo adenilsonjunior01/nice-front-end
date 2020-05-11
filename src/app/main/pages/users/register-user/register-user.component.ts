@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { RegisterUserService } from '../services/register-user/register-user.service';
 import { CustomValidators } from 'ng2-validation';
 import { SweetAlertComponent } from '../../../../theme/shared/components/sweet-alert/sweet-alert.component';
+import { User } from '../interfaces/user';
+import { CustomService } from '../services/custom.service';
+import { RegistroEmpresaService } from '../../empresa/services/registro-empresa.service';
 
 @Component({
   selector: 'app-register-user',
@@ -12,19 +15,23 @@ import { SweetAlertComponent } from '../../../../theme/shared/components/sweet-a
 export class RegisterUserComponent implements OnInit {
   public formUser: FormGroup;
 
+  loading = false;
   empresas: Array<any>;
   perfil: Array<any>;
+  user: User;
 
   public textPhoneMask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   public maskCep = [ ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
   private toast = new SweetAlertComponent();
   constructor(
     private fb: FormBuilder,
-    private service: RegisterUserService
+    private service: RegisterUserService,
+    private customService: CustomService,
+    private _registroService: RegistroEmpresaService
   ) { }
 
   ngOnInit() {
-    this.empresas = this.service.getEmpresas();
+    this.getEmpresasAtivas();
     this.perfil = this.service.getPerfils();
     this.formularioCadastroUsuario();
   }
@@ -35,29 +42,20 @@ export class RegisterUserComponent implements OnInit {
 
     this.formUser = this.fb.group({
       nome: [null, Validators.required],
-      cep: [null, Validators.required],
-      cd_cidade: [null, Validators.required],
-      cd_estado: [null, Validators.required],
-      sexo: ['2', Validators.required],
-      idEmpresa: [null, Validators.required],
-      idPerfil: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       senha,
-      telefone: [],
+      sexo: ['2', Validators.required],
       login: [null, Validators.required],
+      idEmpresa: [null, Validators.required],
+      idPerfil: [null, Validators.required],
       endereco: [null, Validators.required],
+      estado: [null, Validators.required],
+      cidade: [null, Validators.required],
+      telefone: [null, Validators.required],
+      cep: [null, Validators.required],
 
       confirmPassword
     });
-  }
-
-  public getEmpresas(): void {
-
-  }
-
-
-  public getPerfils(): void {
-
   }
 
   /**
@@ -69,11 +67,12 @@ export class RegisterUserComponent implements OnInit {
     if (this.formUser.valid) {
       let valuesSubmit = Object.assign({}, this.formUser.value);
       valuesSubmit = Object.assign(valuesSubmit, {
-        telefone: parseInt(valuesSubmit.telefone.replace(/\D+/g, '')),
-        cep: valuesSubmit.cep.replace(/\D+/g, '')
+        telefone: valuesSubmit.telefone.replace(/\D+/g, ''),
+        sexo: parseInt(valuesSubmit.sexo),
+        cep: valuesSubmit.cep.replace(/\D+/g, ''),
       });
+
       delete valuesSubmit.confirmPassword;
-      console.log(valuesSubmit);
       this.service.submitNovoUsuario(valuesSubmit).subscribe(
         response => {
           this.toast.toastCustom('success', 'Usuário cadastrado com sucesso!');
@@ -90,6 +89,33 @@ export class RegisterUserComponent implements OnInit {
       });
       this.toast.toastCustom('warning', 'Preencha os campos corretamente.');
     }
+  }
+
+  public getDataAddress(value: any) {
+    const cep = value.replace(/\D/g, '');
+    if (cep !== '') {
+      const validCep = /^[0-9]{8}$/;
+      if (validCep.test(cep)) {
+        this.loading = true;
+        this.customService.getDatas(cep).subscribe(
+          response => {
+            this.loading = false;
+            this.formUser.get('endereco').setValue(response.logradouro);
+            this.formUser.get('estado').setValue(response.uf);
+            this.formUser.get('cidade').setValue(response.localidade);
+          }, err => {
+            this.toast.toastCustom('warning', 'Não foi possível encontrar seu endereço.');
+          }
+        )
+      }
+    }
+  }
+
+  public getEmpresasAtivas() {
+    this._registroService.getEmpresasAtivas().subscribe(
+      response => {
+        this.empresas = response;
+      });
   }
 
   public clearForm(): void {

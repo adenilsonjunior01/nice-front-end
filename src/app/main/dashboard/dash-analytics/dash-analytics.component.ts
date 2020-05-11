@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../services/dashboard.service';
+import { HandleErrorsService } from '../../../theme/shared/services/handle-errors.service';
 
 @Component({
   selector: 'app-dash-analytics',
@@ -10,8 +12,11 @@ export class DashAnalyticsComponent implements OnInit {
   public dailyVisitorStatus: string;
   public dailyVisitorAxis: any;
   public deviceProgressBar: any;
+  public datas: any;
+  public datasGeral: any;
+  public ultimosDatas: any;
 
-  constructor() {
+  constructor(private _service: DashboardService, private _handleErros: HandleErrorsService) {
     this.dailyVisitorStatus = '1y';
 
     this.deviceProgressBar = [
@@ -64,6 +69,22 @@ export class DashAnalyticsComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getTotalUsuarios();
+    this.getDatasDashboard();
+    this.getUltimosUsuarios();
+  }
+
+  public getDatasDashboard() {
+    this._service.getDatasDashboard().subscribe(response => this.datas = response, err => this._handleErros.requestErrors(err.status));
+  }
+
+  public getTotalUsuarios() {
+    this._service.getTotalUsuarios().subscribe(response => this.datasGeral = response, err => this._handleErros.requestErrors(err.status));
+  }
+
+  public getUltimosUsuarios() {
+    this._service.getUltimosUsuarios().subscribe(response => this.ultimosDatas = response, err => this._handleErros.requestErrors(err.status));
+  }
 
 }
